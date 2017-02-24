@@ -1,0 +1,19 @@
+[
+  {
+    "environment": [{
+      "name": "SECRET",
+      "value": "KEY"
+    }],
+    "memory": 800,
+    "cpu": 1024,
+    "image": "wordpress:latest",
+    "name": "wordpress",
+    "portMappings": [
+      {
+        "hostPort": 80,
+        "containerPort": 80,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]
