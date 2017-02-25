@@ -2,8 +2,14 @@
 This project contains `terraform` and `packer` files to provision a Wordpress service on top of AWS EC2 Container Service. It deploys by default in region `us-west-2` and spans two availability zones.
 
 ## Instructions
-As we're using AWS `ECR` to store our docker containers and that our `ECS` cluster is pulling from it, we'll need to deploy our infrastructure first and then build and push our Wordpress container with `packer`
+As we're using AWS `ECR` to store our docker containers and that our `ECS` cluster is pulling from it, we'll need to deploy our infrastructure first and then build and push our Wordpress container with `packer`.
 
+What you'll need on your machine
+ - packer
+ - terraform
+ - docker
+ - ansible
+ 
 Export your AWS credentials 
 ```
 export AWS_ACCESS_KEY_ID=your_access_key
