@@ -1,0 +1,39 @@
+[
+  {
+    "environment": [{
+      "name": "WORDPRESS_DB_USER",
+      "value": "wp"
+    },
+    {
+      "name": "WORDPRESS_DB_PASSWORD",
+      "value": "myverystrongpassword"
+    },
+    {
+      "name": "WORDPRESS_DB_NAME",
+      "value": "wordpress"
+    },
+    {
+      "name": "WORDPRESS_DB_HOST",
+      "value": "db.wordpress.ael"
+    }
+    ],
+    "memory": 800,
+    "cpu": 1024,
+    "image": "${repository_url}:1.0",
+    "name": "wordpress",
+    "command": ["apache2-foreground"],
+    "mountPoints": [
+      {
+        "ContainerPath": "/var/www/html/",
+        "SourceVolume": "nfs-storage"
+      }
+    ],
+    "portMappings": [
+      {
+        "hostPort": 80,
+        "containerPort": 80,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]

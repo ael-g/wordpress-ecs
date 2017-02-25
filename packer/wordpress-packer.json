@@ -1,0 +1,41 @@
+{
+  "variables": { 
+    "aws_access_key_id": "{{env `AWS_ACCESS_KEY_ID`}}", 
+    "aws_secret_access_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+    "ecr_repository": "{{env `ECR_REPOSITORY`}}"
+  }, 
+  "builders": [
+    {
+      "type": "docker",
+      "image": "wordpress:4.7",
+      "commit": true,
+      "run_command": []
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": ["apt-get update", "apt-get install -y python2.7", "ln -s /usr/bin/python2.7 /usr/bin/python"]
+    },
+    {
+      "type": "ansible",
+      "playbook_file": "playbook.yml"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository": "{{user `ecr_repository`}}/wordpress_ael",
+        "tag": "1.0"
+      },
+      {
+        "type": "docker-push",
+        "ecr_login": true,
+        "aws_access_key": "{{user `aws_access_key_id`}}",
+        "aws_secret_key": "{{user `aws_secret_access_key`}}",
+        "login_server": "https://{{user `ecr_repository`}}/"
+      }
+    ]
+  ]
+}

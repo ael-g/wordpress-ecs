@@ -12,5 +12,5 @@ resource "aws_db_instance" "rds" {
 
 resource "aws_db_subnet_group" "rds" {
   name       = "subnet_group"
-  subnet_ids = ["${aws_subnet.zone1_subnet.id}", "${aws_subnet.zone2_subnet.id}"]
+  subnet_ids = ["${aws_subnet.private_subnet_zoneA.id}", "${aws_subnet.private_subnet_zoneB.id}"]
 }

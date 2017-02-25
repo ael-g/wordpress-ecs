@@ -1,0 +1,7 @@
+---
+
+- name: Customize wordpress container
+  hosts: all
+
+  tasks:
+    - shell: "echo we can do what we want here!"
